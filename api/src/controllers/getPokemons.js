@@ -15,28 +15,31 @@ const getPokemons = async (req, res) => {
             const rispons = await axios.get(poke.url);
             return rispons.data;
         }));
-            
+        
+        let types;
+
         let vida;
         let ataque;
         let defensa;
         let velocidad;
+        
+        let pokeInfo = PDetails.map((pok)=>{
 
-        PDetails.map((pokeito)=>{
-            vida = pokeito.stats.find((e) =>{
+            types = pok.types.map((ga)=>ga.type.name);
+            
+            vida = pok.stats.find((e) =>{
                 if(e.stat.name=="hp") return(e);
             }),
-            ataque = pokeito.stats.find((e) =>{
+            ataque = pok.stats.find((e) =>{
                 if(e.stat.name=="attack") return(e);
             }),
-            defensa = pokeito.stats.find((e) =>{
+            defensa = pok.stats.find((e) =>{
                 if(e.stat.name=="defense") return(e);
             }),
-            velocidad = pokeito.stats.find((e) =>{
+            velocidad = pok.stats.find((e) =>{
                 if(e.stat.name=="speed") return(e);
             })
-        });
 
-        let pokeInfo = PDetails.map((pok)=>{
             return {
                 id: pok.id,
                 nombre: pok.name,
@@ -47,6 +50,7 @@ const getPokemons = async (req, res) => {
                 velocidad: velocidad.base_stat,
                 altura: pok.height,
                 peso: pok.weight,
+                tipo: types
             }
         });
         return res.status(200).json(pokeInfo);

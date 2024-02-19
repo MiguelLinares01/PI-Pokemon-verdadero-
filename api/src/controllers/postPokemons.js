@@ -2,7 +2,6 @@ const axios = require("axios");
 const { Pokemons } = require("../db");
 const { Type } = require("../db");
 
-
 const postPokemons = async (req, res) =>{
     try {
         const { nombre, imagen, vida, ataque, defensa, velocidad, altura, peso, types } = req.body;

@@ -26,6 +26,7 @@
 
 .App-link {
   color: #61dafb;
+  color: #b4b4b4;
 }
 
 .fondoP {
@@ -42,6 +43,25 @@
   letter-spacing: 5px;
   /* font-stretch:semi-expanded; */
 }
+
+
+.btn{
+  padding: 10px;
+  font-size: 25px;
+  color: #000;
+  border-radius: 10px;
+  border: 5px solid lightgreen;
+  background-color: antiquewhite;
+  
+  :visited{
+    text-decoration:none;
+  }
+  :hover{
+    text-decoration:none;
+    color: #61dafb;
+  }
+}
+
 
 @keyframes App-logo-spin {
   from {

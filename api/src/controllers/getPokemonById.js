@@ -12,6 +12,9 @@ const getPokemonById = async (req, res) => {
         else{
             let pokeInfo = [];
             const { data } = await axios.get(`${URL}/${pokeId}`);
+            fetch(`${URL}/${pokeId}`)
+                .then(res => res.data)
+                .then(data => data)
             let types = [];
             data.types.forEach(e => {
                 types.push(e.type.name);
@@ -42,7 +45,11 @@ const getPokemonById = async (req, res) => {
             });
             let olo = []; 
             olo.push(await Pokemons.findOne({where:{id:pokeId}, include: Type}));
-            if(olo[0] !== null) pokeInfo.push(olo);
+            if(olo[0] !== null) {
+                olo.map((ele)=>{
+                    pokeInfo.push(ele);
+                })
+            };
 
             return res.status(200).json(pokeInfo);
         }

@@ -50,21 +50,13 @@ const getPokemonsByName = async (req, res) => {
             typess = [];
             ala[i].Types.forEach(e => {
                 typess.push(e.nombre);
-                // return res.status(200).send(e.nombre);
             });
-            // return res.status(200).send(types);
             ala[i].Types = typess;
-            // return res.status(200).send(ala[i].Types);
         }
-        // ala[0].Types.pop();
-        // ala[0].Types.pop();
-        // ala[0].Types = 'XD'
-        
-        // return res.status(200).send(ala);
         for (let i = 0; i < ala.length; i++) {
             db_pok.push(ala[i]);
         }
-        if(db_pok.length === 0) return res.status(500).send('Ah ingresado un pokemon inexistente');
+        if(db_pok.length === 0) return res.status(500).json('Ah ingresado un pokemon inexistente');
         return res.status(200).send(db_pok);
     } catch (error) {
         return res.status(500).send(error.message);
